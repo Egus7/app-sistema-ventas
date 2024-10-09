@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <!-- Contenido -->
+    <div class="container mt-4">
+        <h3>Resumen de la Compra</h3>
+        <form id="form-compra-resumen" (ngSubmit)="addCompra()">
+            <div class="modal-body">
+                <h4>Cabecera Compra</h4> 
+                <div class="mb-3">
+                    <label for="fecha-compra" class="form-label">Fecha Compra</label>
+                    <input type="datetime-local" class="form-control" id="fecha-compra" name="fecha_compra" 
+                            [(ngModel)]="nuevaCompra.fecha_compra" required>                     
+                </div>            
+                <div class="mb-1">
+                    <label for="proveedor-compra" class="form-label">Proveedor Compra</label>
+                    <select class="form-select" id="proveedor-compra" name="proveedor_id" 
+                            [(ngModel)]="nuevaCompra.proveedor_id" required>
+                        <option value="" disabled selected>Selecciona un proveedor</option>
+                        <option *ngFor="let proveedor of proveedores" [value]="proveedor.id_proveedor">
+                            {{ proveedor.nombre_proveedor }}
+                        </option>
+                    </select>
+                </div> 
+                <div class="mb-1">
+                    <a routerLink="../proveedor" class="btn btn-success" title="Agregar Proveedor">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-envelope-plus-fill" viewBox="0 0 16 16">
+                            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.026A2 2 0 0 0 2 14h6.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586l-1.239-.757ZM16 4.697v4.974A4.491 4.491 0 0 0 12.5 8a4.49 4.49 0 0 0-1.965.45l-.338-.207L16 4.697Z"/>
+                            <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1h-1v-1a.5.5 0 0 0-.5-.5Z"/>
+                        </svg>                                                     
+                    </a>
+                </div> 
+                <router-outlet></router-outlet>
+            </div>
+            <h4>Detalle Compra</h4>
+            <table id="tabla-resumen-compra">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>IVA</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let detalle of detallesCompra">
+                        <td>{{ detalle.producto_id }} - {{detalle.nombre}} </td>
+                        <td>{{ detalle.cantidad }}</td>
+                        <td>{{ detalle.precio_unitario | currency:'USD' }}</td>
+                        <td>{{ detalle.iva ? 'Sí' : 'No' }}</td>  
+                        <td>{{ detalle.subtotal | currency:'USD' }}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="total-row">
+                      <td colspan="4" style="text-align: right;"><b>Suma Subtotal:</b></td>
+                      <td>{{ sumaSubtotal | currency:'USD' }}</td>
+                    </tr>
+                    <tr class="total-row">
+                      <td colspan="4" style="text-align: right;"><b>IVA 12%:</b></td>
+                      <td>{{ ivaTotal | currency:'USD' }}</td>
+                    </tr>
+                    <tr class="total-row">
+                      <td colspan="4" style="text-align: right;"><b>Total:</b></td>
+                      <td>{{ totalCompra | currency:'USD' }}</td>
+                    </tr>
+                  </tfoot>
+            </table>
+            <div class="mb-3" style="text-align: right;">
+                <a type="button" routerLink="../compra" class="btn btn-danger">Cancelar Compra</a>.                     
+                <button type="submit"  id="confirmar-compra-btn" class="btn btn-primary">Confirmar Compra</button>
+            </div>
+            <router-outlet></router-outlet>
+        </form>
+    </div>    
+    <!-- Enlaces a los archivos de jQuery y Popper.js (requeridos por Bootstrap) -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://unpkg.com/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

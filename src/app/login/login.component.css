@@ -1,0 +1,80 @@
+/* Ajusta el tamaño y la posición del contenedor del formulario */
+.login-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 40px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    text-align: center; /* Centra el contenido */
+  }
+  
+  /* Estilos adicionales para el mensaje de error */
+  .error-message {
+    color: #ff0000;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos para el formulario y los campos de entrada */
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    box-sizing: border-box;
+  }
+  
+  /* Estilos para los botones de inicio de sesión y registro */
+  button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+ /* Estilos adicionales para el botón de registro */
+.register-button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .register-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .register-container {
+    margin-top: 20px;
+  }
+  
+  /* Estilos adicionales para el mensaje de "No tienes una cuenta?" */
+  .no-account-message {
+    color: #333;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  

@@ -1,0 +1,129 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+  }
+  
+  .encabezado {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .encabezado h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .encabezado p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  #detalle-factura-container {
+    margin-top: 30px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th,
+  .table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .pie-tabla {
+    margin-top: 20px;
+    text-align: right;
+  }
+  
+  .pie-tabla p {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  @media print {
+    body {
+      background-color: #fff;
+    }
+  
+    .container {
+      border: none;
+      box-shadow: none;
+    }
+  }
+  
+  /* Estilos adicionales para replicar el diseño de la plantilla de factura informal */
+  
+  .encabezado {
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+  
+  .encabezado h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .encabezado #logo {
+    width: 5%;
+    background-color: #f2f2f2;
+    color: #f2f2f2;
+    height: auto;
+    padding: 5px;
+
+  }
+
+  .encabezado p {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .numero-factura {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .fecha-emision {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  .cliente-info {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #555;
+  }
+  
+  .detalle-factura {
+    margin-bottom: 20px;
+  }
+  
+  .detalle-factura table {
+    margin-bottom: 10px;
+  }
+  
+  .subtotal {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .total {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  

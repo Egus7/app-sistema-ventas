@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</head>
+  <body>
+      <!-- Contenido -->
+    <div class="container mt-4">
+        <h1 class="mb-3">PRODUCTOS</h1>
+        <a href="#" class="btn btn-primary mb-3" (click)="abrirModalCreate()" data-bs-toggle="modal" data-bs-target="#modal-nuevo-producto"> Agregar Producto
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
+                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z"/>
+            </svg>
+        </a>.
+        <a class="btn btn-primary mb-3" routerLink="categoria"> Agregar Categoria
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"/>
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+            </svg>
+        </a>.
+        <a class="btn btn-primary mb-3" routerLink="marca"> Agregar Marca
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-bookmark-plus-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm6.5-11a.5.5 0 0 0-1 0V6H6a.5.5 0 0 0 0 1h1.5v1.5a.5.5 0 0 0 1 0V7H10a.5.5 0 0 0 0-1H8.5V4.5z"/>
+            </svg>
+        </a>
+        <router-outlet></router-outlet> 
+        <div *ngIf="productos.length !== 0">
+            <table class="table" id="table-productos">
+                <thead>
+                    <tr style="background-color: ghostwhite;">
+                        <th>ACCIONES</th>
+                        <th>ID PRODUCTO</th>
+                        <th>NOMBRE</th>
+                        <th>MARCA</th>
+                        <th>DESCRIPCIÓN</th>
+                        <th>PRECIO UNITARIO</th>
+                        <th>PRECIO VENTA</th>
+                        <th>IVA?</th>
+                        <th>STOCK ACTUAL</th>  
+                        <th>PRESENTACIÓN</th>  
+                        <th>CATEGORIA</th>                                                                  
+                    </tr>   
+                </thead>
+                <tbody>
+                    <tr *ngFor="let producto of productos" >
+                        <td>  
+                            <button id="btn-editar" title="Editar" class="btn btn-warning mb-1" data-bs-toggle="modal"
+                                data-bs-target="#modal-edicion-producto" (click)="abrirModalEdicion(producto)" >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                </svg>                                           
+                            </button>             
+                            <button id="btn-eliminar" title="Eliminar" class="btn btn-danger mb-1" (click)="eliminarProducto(producto.id_producto)" >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                </svg>
+                            </button> 
+                        </td>
+                        <td> {{producto.id_producto}} </td>
+                        <td> {{producto.nombre_producto}} </td>
+                        <td> {{producto.marca_id}} </td>
+                        <td> {{producto.descripcion_producto}} </td>
+                        <td> {{producto.precio_unitario}} </td>
+                        <td> {{producto.precio_venta}} </td>
+                        <td>
+                            <span [innerHTML]="mostrarIcono(producto.iva)"></span>
+                        </td>                                                   
+                        <td [style.color]="producto.stock_producto === 0 ? 'red' : 'black'">
+                            <b>{{ producto.stock_producto === 0 ? 'AGOTADO' : producto.stock_producto }}</b>
+                        </td>                       
+                        <td> {{producto.presentacion_producto}} </td>
+                        <td> {{producto.categoria_id}} </td>                      
+                                           
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Modal Nuevo Producto -->
+        <div class="modal fade" id="modal-nuevo-producto" tabindex="-1" aria-labelledby="modal-nuevo-producto-label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-nuevo-producto-label">Nuevo Producto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- Formulario para ingresar datos del nuevo producto -->
+                    <form (submit)="addProducto()">
+                        <div class="modal-body">                   
+                            <div class="mb-3">
+                                <label for="nombre-producto" class="form-label">Nombre del producto</label>
+                                <input type="text" class="form-control" id="nombre-producto" [(ngModel)]="nuevoProducto.nombre_producto" name="nombre_producto" required
+                                        oninput="this.value = this.value.toUpperCase()">
+                            </div>
+                            <div class="mb-3">
+                                <label for="marca-producto" class="form-label">Marca</label>
+                                <select class="form-select" id="marca-producto" name="marca_id" [(ngModel)]="nuevoProducto.marca_id" required>
+                                  <option value="" disabled selected>Selecciona una marca</option>
+                                  <option *ngFor="let marca of marcas" [value]="marca.id_marca">
+                                        {{ marca.nombre_marca }}</option>
+                                </select>
+                            </div> 
+                            <div class="mb-3">
+                                <label for="descripcion-producto" class="form-label">Descripción</label>
+                                <textarea class="form-control" id="nombre-producto" rows="2" [(ngModel)]="nuevoProducto.descripcion_producto" name="descripcion_producto" required
+                                        oninput="this.value = this.value.toUpperCase()">
+                                </textarea>
+                            </div>     
+                            <div class="mb-3">
+                                <label for="precio-unitario-producto" class="form-label">Precio Unitario</label>
+                                <input type="text" class="form-control" id="precio-unitario-producto" [(ngModel)]="nuevoProducto.precio_unitario" name="precio_unitario" 
+                                        required oninput="this.value = this.value.replace(/[^0-9\.]/g, '');">
+                            </div> 
+                            <div class="mb-3">
+                                <label for="precio-venta-producto" class="form-label">Precio Venta</label>
+                                <input type="text" class="form-control" id="precio-venta-producto" [(ngModel)]="nuevoProducto.precio_venta" name="precio_venta" 
+                                        required oninput="this.value = this.value.replace(/[^0-9\.]/g, '');">
+                            </div> 
+                            <div class="mb-3">
+                                <label for="iva-producto" class="form-label">IVA?</label>: 
+                                <input type="checkbox" class="form-check-input" id="iva-producto" name="iva" [(ngModel)]="nuevoProducto.iva">
+                            </div>                                                               
+                            <div class="mb-3">
+                                <label for="stock-producto" class="form-label">Stock</label>
+                                <input type="number" class="form-control" [value]="0" id="stock-producto" [(ngModel)]="nuevoProducto.stock_producto" name="stock_prod" disabled>
+                            </div>                                  
+                            <div class="mb-3">
+                                <label for="presentacion-producto" class="form-label">Presentación</label>
+                                <select class="form-select" id="presentacion-producto" name="presentacion_producto" 
+                                                [(ngModel)]="nuevoProducto.presentacion_producto" required>
+                                    <option value="" disabled selected >--Seleccione Presentación--</option>
+                                    <option value="UNIDAD">UNIDAD</option>
+                                    <option value ="CAJA">CAJA</option>
+                                    <option value="PIEZA">PIEZA</option>    
+                                    <option value="PAQUETE">PAQUETE</option>
+                                </select>   
+                            </div>  
+                            <div class="mb-3">
+                                <label for="categoria-producto" class="form-label">Categoría</label>
+                                <select class="form-select" id="categoria-producto" name="categoria_id" [(ngModel)]="nuevoProducto.categoria_id" required>
+                                  <option value="" disabled selected>Selecciona una categoría</option>
+                                  <option *ngFor="let categoria of categorias" [value]="categoria.id_cat">{{ categoria.nombre_cat }}</option>
+                                </select>
+                            </div>                              
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <!-- Modal Edición Producto -->
+        <div class="modal fade" id="modal-edicion-producto" tabindex="-1" aria-labelledby="modal-edicion-producto-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-edicion-producto-label">Editar Producto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form (submit)="actualizarProducto()" >
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="id-producto" class="form-label">ID Producto</label>
+                                <input type="text" class="form-control" id="id-producto" [(ngModel)]="edicionProducto.id_producto" name="id_producto" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="nombre-producto" class="form-label">Nombre del producto</label>
+                                <input type="text" class="form-control" id="nombre-producto" [(ngModel)]="edicionProducto.nombre_producto" name="nombre_producto" required
+                                    oninput="this.value = this.value.toUpperCase()">
+                            </div>        
+                            <div class="mb-3">
+                                <label for="marca-producto" class="form-label">Marca</label>
+                                <select class="form-select" id="marca-producto" name="marca_id" [(ngModel)]="edicionProducto.marca_id" required>
+                                  <option [ngValue]="null" disabled>Selecciona una marca</option>
+                                  <option *ngFor="let marca of marcas" [ngValue]="marca.id_marca">{{ marca.nombre_marca }}</option>
+                                </select>
+                            </div>                                                  
+                            <div class="mb-3">
+                                <label for="descripcion-producto" class="form-label">Descripción</label>
+                                <textarea class="form-control" rows="2" id="descripcion-producto" [(ngModel)]="edicionProducto.descripcion_producto" name="descripcion_producto" required
+                                    oninput="this.value = this.value.toUpperCase()">
+                                </textarea>
+                            </div>                           
+                            <div class="mb-3">
+                                <label for="precio-unitario-producto" class="form-label">Precio Unitario</label>
+                                <input type="text" class="form-control" id="precio-unitario-producto" [(ngModel)]="edicionProducto.precio_unitario" name="precio_unitario" 
+                                        required oninput="this.value = this.value.replace(/[^0-9\.]/g, '');">
+                            </div> 
+                            <div class="mb-3">
+                                <label for="precio-venta-producto" class="form-label">Precio Venta</label>
+                                <input type="text" class="form-control" id="precio-venta-producto" [(ngModel)]="edicionProducto.precio_venta" name="precio_venta" 
+                                        required oninput="this.value = this.value.replace(/[^0-9\.]/g, '');">
+                            </div>   
+                            <div class="mb-3">
+                                <label for="iva-producto" class="form-label">IVA?</label>
+                                <!-- checkbox guardar con valor true o false -->
+                                <select class="form-select" id="iva-producto" name="iva" [(ngModel)]="edicionProducto.iva" required>
+                                    <option value="" disabled>--Seleccione--</option>
+                                    <option value="true"><b>SI: ✔</b></option>
+                                    <option value="false" style="color-scheme: red;"><b>NO: ✘</b></option>
+                                </select>
+                            </div>          
+                            <div class="mb-3">
+                                <label for="presentacion-producto" class="form-label">Presentación</label>
+                                <select class="form-select" id="presentacion-producto" name="presentacion_producto" [(ngModel)]="edicionProducto.presentacion_producto" required>
+                                    <option [value]="null" disabled>Selecciona una presentación</option>
+                                    <option value="UNIDAD">UNIDAD</option>
+                                    <option value ="CAJA">CAJA</option>
+                                    <option value="PIEZA">PIEZA</option>    
+                                    <option value="PAQUETE">PAQUETE</option>
+                                </select>                          
+                            </div>  
+                            <div class="mb-3">
+                                <label for="categoria-producto" class="form-label">Categoría</label>
+                                <select class="form-select" id="categoria-producto" name="categoria_id" [(ngModel)]="edicionProducto.categoria_id" required>
+                                  <option [ngValue]="null" disabled selected>Selecciona una categoría</option>
+                                  <option *ngFor="let categoria of categorias" [ngValue]="categoria.id_cat">{{ categoria.nombre_cat }}</option>
+                                </select>
+                            </div>       
+                            <button type="submit" class="btn btn-primary">Actualizar</button>              
+                        </div>            
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Enlaces a los archivos de jQuery y Popper.js (requeridos por Bootstrap) -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://unpkg.com/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+  </body>
+         
+</html>

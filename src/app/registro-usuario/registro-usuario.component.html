@@ -1,0 +1,25 @@
+<div class="register-container">
+    <h2>Registro de Usuario</h2>
+    <div class="form-group">
+      <label>Nombres:</label>
+      <input type="text" [(ngModel)]="nuevoUsuario.nombres_usuario" placeholder="Ej. Roman Eduardo" />
+    </div>
+    <div class="form-group">
+      <label>Apellidos:</label>
+      <input type="text" [(ngModel)]="nuevoUsuario.apellidos_usuario" placeholder="Ej. Perez Rios" />
+    </div>
+    <div class="form-group">
+      <label>Código de Usuario:</label>
+      <input type="text" [(ngModel)]="nuevoUsuario.codigo_usuario" placeholder="Ej. rperez"/>
+    </div>
+    <div class="form-group">
+      <label>Contraseña:</label>
+      <input type="password" [(ngModel)]="nuevoUsuario.contrasenia_usuario" placeholder="*****" />
+    </div>
+    <div class="form-group">
+        <button (click)="register()">Registrarse</button>
+        &nbsp;&nbsp; <!-- Agrega espacios entre los botones -->
+        <a routerLink="/login"><button class="cancel-button">Cancelar</button></a>
+    </div>
+      
+</div>

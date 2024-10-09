@@ -1,0 +1,25 @@
+/* styles.css */
+
+/* Estilo para la barra de navegación */
+.navbar {
+    padding: 1rem; /* Ajusta el espaciado interno según sea necesario */
+  }
+  
+  /* Estilo para el texto del usuario */
+  .navbar-text {
+    margin-right: 1rem; /* Espaciado entre el texto del usuario y el botón de cerrar sesión */
+    color: #ffffff; /* Color del texto del usuario */
+  }
+  
+  /* Estilo para el botón de cerrar sesión */
+  .btn-cerrar-sesion {
+    color: #dc3545; /* Color del texto del botón */
+    border-color: #dc3545; /* Color del borde del botón */
+  }
+  
+  .btn-cerrar-sesion:hover {
+    color: #fff; /* Color del texto del botón al pasar el mouse */
+    background-color: #dc3545; /* Color de fondo del botón al pasar el mouse */
+    border-color: #dc3545; /* Color del borde del botón al pasar el mouse */
+  }
+  

@@ -1,0 +1,39 @@
+<div class="login-container">
+    <h2>Iniciar Sesión</h2>
+  
+    <!-- Muestra el mensaje de error si hay uno -->
+    <div *ngIf="errorMensaje" class="error-message">
+      {{ errorMensaje }}
+    </div>
+  
+    <!-- Formulario de inicio de sesión -->
+    <form (ngSubmit)="login()">
+      <div class="form-group">
+        <label for="codigo_usuario">Usuario:</label>
+        <input type="text" id="codigo_usuario" name="codigo_usuario" [(ngModel)]="codigo_usuario" 
+            placeholder="Usuario" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="contrasenia_usuario">Contraseña:</label>
+        <input type="password" id="contrasenia_usuario" name="contrasenia_usuario" 
+            [(ngModel)]="contrasenia_usuario" placeholder="Contraseña" required>
+      </div>
+  
+      <button type="submit">Iniciar Sesión</button>
+    </form>
+  
+    <!-- Contenedor para el botón de registro -->
+    <div class="register-container">
+        <!-- Mensaje "No tienes una cuenta?" -->
+        <div class="no-account-message">
+        No tienes una cuenta?
+        </div>
+    
+        <!-- Botón de registro -->
+        <button class="register-button" routerLink="/registro-usuario" >Regístrate</button>
+        <router-outlet></router-outlet>
+    </div>
+  
+  </div>
+  

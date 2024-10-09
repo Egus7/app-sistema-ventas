@@ -1,0 +1,59 @@
+/* Añade estos estilos a tu archivo CSS */
+/* registro-usuario.component.css */
+
+ .register-container {
+    width: 300px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 50px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+ .cancel-button {
+    background-color: #ccc;
+    color: #333;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px; /* Ajusta el margen según sea necesario */
+  }
+  
+  .cancel-button:hover {
+    background-color: #ddd;
+  }
+  

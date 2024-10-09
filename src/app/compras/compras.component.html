@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <!-- Contenido -->
+    <div class="container mt-4">
+        <h2 class="mb-3" style="text-align: center;"><b>REGISTRO DE COMPRA</b></h2>
+        <h3 class="mb-3">LISTA DE PRODUCTOS</h3>
+
+        <div *ngIf="listProductos.length !== 0"></div>
+        <table class="table" id="table-compras">
+            <thead>
+                <tr>
+                    <th>ID Producto</th>
+                    <th>Producto</th>
+                    <th>Descripción</th>
+                    <th>Precio Unitario</th>
+                    <th>Stock Actual</th>
+                    <th>Cantidad</th>
+                    <th style="text-align: center;">Comprar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let producto of listProductos" >
+                    <td>{{producto.id_producto}}</td>
+                    <td>{{producto.nombre_producto}}</td>
+                    <td>{{producto.descripcion_producto}}</td>
+                    <td>{{producto.precio_unitario}}</td>
+                    <td>{{producto.stock_producto}}</td>
+                    <td>
+                        <input
+                          type="number" [id]="'cantidad-' + producto.id_producto" min="1" value="1" style="width: 50px"
+                        />
+                    </td>
+                    <td style="text-align: center;">
+                        <button type="button" title="Agregar al Carrito" class="btn btn-success" 
+                            (click)="agregarAlCarrito(producto.id_producto, producto.nombre_producto, 
+                                    producto.precio_unitario, producto.iva)" >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
+                              <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z"/>
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="carrito">
+            <h3>Carrito de Compras</h3>
+            <table class="table-carrito" id="table-carrito">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th> IVA </th>
+                        <th>Subtotal</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let producto of carrito">
+                        <td>{{ producto.producto_id }} - {{ producto.nombre }} </td>
+                        <td>{{ producto.cantidad }}</td>
+                        <td>{{ producto.precio | currency:'USD' }}</td>
+                        <td>{{ producto.iva ? 'Sí' : 'No' }}</td>
+                        <td>{{ producto.precio * producto.cantidad | currency:'USD'}}</td>
+                        <td>
+                          <button (click)="eliminarDelCarrito(producto.producto_id)" title="Eliminar del Carrito" class="btn btn-danger">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                            </svg>
+                          </button>
+                        </td>
+                      </tr> 
+                </tbody>
+                <!-- Pie de la tabla para mostrar el total -->
+                <tfoot id="total">
+                <tr>
+                    <td colspan="4">Total</td>
+                    <td><b>{{calcularTotalCarrito() | currency:'USD'}}</b></td>
+                    <td></td>
+                </tr>
+                </tfoot>
+            </table>
+            <div class="mb-3">
+                <button type="button" (click)="registrarCompra()" id="comprar" class="btn btn-primary" >Registrar compra</button>
+            </div>
+        </div>      
+    </div>
+    <!-- Enlaces a los archivos de jQuery y Popper.js (requeridos por Bootstrap) -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://unpkg.com/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
